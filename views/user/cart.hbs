@@ -1,0 +1,93 @@
+<div class='card'>
+  <div class='row'>
+    <div class='col-md-8 cart'>
+      <div class='title'>
+        <div class='row'>
+          <div class='col'>
+            <h4><b>Cart</b></h4>
+          </div>
+          <div
+            class='col align-self-center text-right text-muted'
+          >{{cartData}} vehicles</div>
+        </div>
+      </div>
+      {{#each cart}}
+        {{#each this}}
+          <div class='row border-top border-bottom'>
+            <div class='row main align-items-center'>
+              <div class='col-2'><img
+                  class='img-fluid img-width'
+                  src='/uploads/{{this.Vehicleimage}}'
+                /></div>
+              <div class='col'>
+                <div class='row text-muted text-carname'>{{this.Name}}</div>
+                <div
+                  class='row text-carsub'
+                >{{this.TransmissionType}},{{this.Seater}}</div>
+              </div>
+
+              <div class='col car-price'>Rs
+                {{this.Rent}}
+                <a onclick="removeCart('{{this._id}}')"><span
+                    class='close'
+                  >&#10005</span></a>
+              </div>
+            </div>
+            <div class='d-flex justify-content-between w-100'>
+              <div>
+                <p class='pick-drop text-dark'>PICKUP</p>
+                <p class='pick-drop-date text-dark'>DATE</p>
+                <p class='enterDate text-danger'>{{this.Pickupdate}}</p>
+              </div>
+              <div>
+                <p>duration</p>
+                <div class='container aditionals'>
+
+                  <div class='circle'>
+                    <p
+                      class='pt-2'
+                      style='padding-left:13px ;'
+                    >{{this.Days}}d</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class='pick-drop text-dark'>DROP</p>
+                <p class='pick-drop-date text-dark'>DATE</p>
+                <p class='enterDate text-danger'>{{this.Dropdate}}</p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{/each}}
+
+      <div class='back-to-shop'><a
+          class='a-link'
+          href='/vehicles '
+        >&leftarrow;</a><span class='text-muted a-link'>Back to shop</span></div>
+    </div>
+    <div class='col-md-4 summary'>
+      <div>
+        <h5><b>Summary</b></h5>
+      </div>
+      <hr />
+
+      {{#each cart}}
+        {{#each this}}
+          <div class='row'>
+            <div class='col' style='padding-left:0;'>{{this.Name}}</div>
+            <div class='col text-right'>RS {{this.Rent}}</div>
+          </div>
+        {{/each}}
+      {{/each}}
+      <hr />
+      <div class='row'>
+        <div class='col' style='padding-left:0;'>total</div>
+        <div class='col text-right'>RS {{sum}}</div>
+      </div>
+      {{!-- <a class='btn-book btn' type='button' id='booknowCart'>Book now</a> --}}
+       <a class='btn-book btn' type='button' id="bookVehcile" href="/checkout/cart">Book now</a>
+    </div>
+  </div>
+
+</div>

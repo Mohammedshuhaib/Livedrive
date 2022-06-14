@@ -1,0 +1,72 @@
+<div class='content'>
+  <div class='row'>
+
+    <div class='col-md-12'>
+      <div class='card'>
+        <div class='card-header'>
+          <strong class='card-title'>cars</strong>
+        </div>
+        <div class='card-body'>
+          <table id='bootstrap-data-table' class='table table-bordered'>
+            <thead>
+              <tr>
+                <th scope='col'>Name</th>
+                <th scope='col'>Number</th>
+                <th scope='col'>Kilometers</th>
+                <th scope='col'>Rent</th>
+                <th scope="col">Hub</th>
+                <th scope='col'>Image</th>
+                <th>Info/edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each cars}}
+
+              
+                  <tr>
+                    <td>{{carsData.Name}}</td>
+                    <td>{{carsData.Number}}</td>
+                    <td>{{carsData.Kilometers}}
+                      <a class='pl-2' href=''><i
+                          class='fa-solid fa-pen-to-square'
+                        ></i></a></td>
+                    <td>{{carsData.Rent}}</td>
+                    <td>{{carsData.hubName}}</td>
+                    <td><img
+                        src='/uploads/{{carsData.vehicleImage}}'
+                        height='50px'
+                        alt=''
+                      /></td>
+                    <td><a
+                        href='/admin/info{{carsData._id}}'
+                        class='btn'
+                        id='infoPage'
+                      ><i class='fa-solid fa-circle-info'></i></a></td>
+                    <td><a
+                       onclick="DeleteVehicleAdmin('{{carsData._id}}')"
+                        class='btn'
+                      ><i class='fa-solid fa-trash'></i></a></td>
+                  </tr>
+         
+              {{/each}}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src='/vendor/js/lib/data-table/datatables.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.buttons.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/jszip.min.js'></script>
+<script src='/vendor/js/lib/data-table/vfs_fonts.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.html5.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.print.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.colVis.min.js'></script>
+<script src='/vendor/js/init/datatables-init.js'></script>

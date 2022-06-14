@@ -1,0 +1,55 @@
+       <div class="content">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Upcoming bookings</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Vehicle Name</th>
+                                            <th scope="col">Pickup date</th>
+                                            <th scope="col">Drop date</th>
+                                            <th scope="col">Duration</th>
+                                            <th scope="col">Rent</th>
+                                            <th scope="col">Payment status</th>
+                                            <th scope="col">Pickup Location</th>
+                                            <th scope="col">drop Location</th>
+                                            <th scope="col">Images</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each upcoming}}
+                                        <tr>
+                                            <td>{{this.booking.UserName}}</td>
+                                            <td>{{this.booking.Name}}</td>
+                                            <td>{{this.booking.pickUpDate}}</td>
+                                            <td>{{this.booking.dropDate}}</td>
+                                            <td>{{this.booking.Days}}</td>
+                                            <td>{{this.booking.Rent}}</td>
+                                            <td>{{this.booking.status}}</td>
+                                            <td>{{this.booking.pickUpLocation}}</td>
+                                            <td>{{this.booking.dropLocation}}</td>
+                                             <td><img src="/uploads/{{this.booking.vehicleImage}}" height="50px" alt=""></td>
+                                        </tr>
+                                        {{/each}}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+<script src='/vendor/js/lib/data-table/datatables.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.buttons.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/jszip.min.js'></script>
+<script src='/vendor/js/lib/data-table/vfs_fonts.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.html5.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.print.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.colVis.min.js'></script>
+<script src='/vendor/js/init/datatables-init.js'></script>

@@ -1,0 +1,173 @@
+<div class="site-section pt-0 pb-0 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            
+              <form class="trip-form" action="/vehicles" method="post" onsubmit="submitdata()">
+                <div class="row align-items-center mb-4">
+                  <div class="col-md-6">
+                    <h3 class="m-0">Begin your trip here</h3>
+                  </div>
+                  <div class="col-md-6 text-md-right">
+                    <span class="text-primary">{{vehicleLength}}</span> <span>bikes available</span></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="cf-1">Where you from</label>
+                <select class="form-control" id="cf-1" name="pickUpLocation">
+                      <option value="{{details.pickUpLocation}}">{{details.pickUpLocation}}</option>
+                  {{#each Hub}}
+                  <option value="{{this.data.hubName}}">{{this.data.hubName}}</option>
+                  {{/each}}
+                </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="cf-2">Where you go</label>
+                <select class="form-control" id="cf-1" name="dropLocation">
+                    <option value="{{details.dropLocation}}">{{details.dropLocation}}</option>
+                  {{#each Hub}}
+                  <option value="{{this.data.hubName}}">{{this.data.hubName}}</option>
+                  {{/each}}
+                </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="cf-3">Journey date</label>
+                    <input type="text" class="form-control" id="book_pick_date" name="pickUpDate"  value="{{details.pickUpDate}}" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="cf-4">Return date</label>
+                    <input type="text" name="dropDate" class="form-control" id="book_off_date"value="{{dropDate}}" required>
+                  </div>
+                </div>
+				<div>
+                <label for="" class="label">i need to ride a</label>
+                <div class="d-flex justify-content-start">
+                  <label>
+                    <input type="radio" name="selectVehicle" value="bike"  checked>
+                    <img src="/images/motorbike.png" height="50px">
+                  </label>
+
+                  <label>
+                    <input type="radio" name="selectVehicle" value="car">
+                    <img src="/images/car.png" height="50px">
+                  </label>
+                </div>
+              </div>
+                  <div class="pt-2 ">
+                    <input type="submit" value="Submit" class="btn btn-danger col-2">
+                  </div>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+		
+
+		<section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row">
+          {{#each bikes}}
+    			<div class="col-md-4">
+    				<div class="car-wrap rounded ftco-animate">
+    					<div class="img rounded d-flex align-items-end" style="background-image: url(/uploads/{{bikes.vehicleImage}});">
+    					</div>
+    					<div class="text">
+    						<h2 class="mb-0"><a href="/">{{bikes.Name}}</a></h2>
+    						<div class="d-flex mb-3">
+	    						<span class="cat">{{bikes.Transmissiontype}} ,{{bikes.Seater}}</span>
+	    						<p class="price ml-auto">RS {{bikes.Rent}}<span>/day</span></p>
+    						</div>
+    						<p class="d-flex mb-0 d-block"><a id="addDate" href="/details{{bikes._id}}" class="btn btn-secondary py-2 ml-1 col-12" type="submit" >Details</a></p>
+						
+              <div class="mx-auto mt-2 d-block"><p id="message"></p></div>
+    					</div>
+    				</div>
+    			</div>
+          {{/each}}
+    		</div>
+    		<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    	</div>
+    </section>
+    
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                <li><a href="#" class="py-2 d-block">Services</a></li>
+                <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
+                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Customer Support</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">FAQ</a></li>
+                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
+                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+                <li><a href="#" class="py-2 d-block">How it works</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

@@ -1,0 +1,238 @@
+<section class='container-fluid'>
+  <div class='row'>
+    <div class='mt-5 col-md-10 mx-auto d-flex'>
+      <form action="/profileUpdate" method="post" enctype="multipart/form-data">
+        <div class='image-upload' >
+          <label for='file-input'>
+            <img src='/uploads/{{this.userData.profileImage}}' class='avatar-pic col-12 rounded-circle' id='avatarView' alt="image not upladed please upload" />
+          </label>
+
+          <input id='file-input' name="profilePic" type='file' onchange='avatarImg(event)' />
+        </div>
+        <input type="text" value="profile" name="profie" hidden>
+        <div class="d-flex justify-content-center">
+        <button type="submit" id="show_profile_button" class="btn">submit</button>
+        </div>
+        <div class='d-flex align-items-center justify-content-center'>
+          <p style='color: black;font-size:25px;'>{{this.userData.user}}</p>
+        </div>
+        
+      </form>
+    </div>
+
+  </div>
+</section>
+<section class='container-fluid'>
+  <div class='row'>
+    <div class='mt-2 p-0 col-md-10 mx-auto rounded shadow main_details'>
+      <div class='col-md-8 col-sm-12 details'>
+        <div class='text-dark ml-4 mt-2'>
+          <div class='mb-5'>
+            <h5>Persional details</h5>
+          </div>
+          <div class='d-flex'>
+            <div class='col-md-12 '>
+              <span class='d-flex justify-content-between'>
+                <p class="fieldProfiel">Full name</p>
+              <a class='edit_tag' type='button' id='fullName' data-bs-toggle='modal'
+                  data-bs-target='#editUser'>{{this.userData.fullname}}<i class='fa-solid fa-pen-to-square pl-2'></i></a>
+              </span>
+              <span class='d-flex justify-content-between'>
+                <p class="fieldProfiel">phone number</p>
+              <a class='edit_tag' type='button' id='mobileNumber'
+                  data-bs-toggle='modal' data-bs-target='#editUser'>{{this.userData.number}}<i class='fa-solid fa-pen-to-square pl-2'></i></a>
+              </span>
+              <span class='d-flex justify-content-between'>
+                <p class="fieldProfiel">email address</p>
+            <a class='edit_tag' id='emailAddress' data-bs-toggle='modal'
+                  data-bs-target='#editUser' type='button'>{{this.userData.email}}<i class='fa-solid fa-pen-to-square pl-2'></i></a>
+              </span>
+              <span class='d-flex justify-content-between'>
+                <p class="fieldProfiel">date of birth</p>
+                <a class='edit_tag' id='dateBirth' data-bs-toggle='modal'
+                  data-bs-target='#editUser' type='button'>{{this.userData.dateOfBirth}}<i class='fa-solid fa-pen-to-square pl-2'></i></a>
+              </span>
+              <span class='d-flex justify-content-between'>
+                <p class="fieldProfiel">License number</p>
+              <a class='edit_tag' type='button' data-bs-toggle='modal'
+                  data-bs-target='#editUser' id='licenseNumber'>{{this.userData.licenseNumber}}<i class='fa-solid fa-pen-to-square pl-2'></i></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 mb-4 col-sm-12 license'>
+        <div class='mb-5'>
+          <h5>License Details</h5>
+        </div>
+        <form action="/profileUpdate" method="post" enctype="multipart/form-data">
+          <div class='image-upload'>
+            <label for='file-input-id'>
+              <img src='/uploads/{{this.userData.idProof}}' width='250px' height='200px' id='ImgView'
+                alt="image not found please upload by clicking here" />
+            </label>
+
+            <input id='file-input-id' type='file' onchange="idUpload(event)" name='idproof' />
+            <input type="text" name="idProof" value="idproof" hidden>
+            <button class="btn" id="show_btn">submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+{{! modal for edit user }}
+<div class='modal fade bd-example' id='editUser' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+  aria-hidden='true'>
+  <div class='modal-dialog mx-auto' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Edit user</h5>
+        <button type='button' class='close' data-bs-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <div class='modal-body'>
+          <div class='form_container parent'>
+            <div class='fullName'>
+              <input type='name' name='fullname' class='form-control' id='userName' required placeholder='Enter your Name' />
+              <p id="errorMessageName"></p>
+              <div class='d-flex justify-content-center'>
+                <a type='submit' onclick="updateDatas('{{this.userData.user}}','userName')" class='btn btn-danger'
+                  id='updateName'>submit</a>
+              </div>
+            </div>
+            <div class='mobileNumber'>
+              <input type='number' name='mobileNumber' class='form-control' required id='userNumber'
+                placeholder='Enter your new mobile number' />
+                <p id="errorMessageMobile"></p>
+              <div class='d-flex justify-content-center'>
+                <a type='submit' onclick="updateMobile('{{this.userData.user}}','Mobilenumber')" class='btn btn-danger'
+                  id='updateMobile'>verify</a>
+              </div>
+            </div>
+            <div class='dateBirth'>
+              <input type='date' name='dateOfBirth' class='form-control' required id='updateBirth'
+                placeholder='Enter your date of birth' />
+                <p id="errorMessageBirh"></p>
+              <div class='d-flex justify-content-center'>
+                <a type='submit' onclick="updateBirth('{{this.userData.user}}','birth')" class='btn btn-danger'
+                  id='updateDateOfBirth'>submit</a>
+              </div>
+            </div>
+            <div class='emailAddress'>
+              <input type='email' name='email' class='form-control' id="userEmail" required placeholder='Enter your email address' />
+              <p id="errorMessageemail"></p>
+              <div class='d-flex justify-content-center'>
+                <a type='submit' onclick="updateEmail('{{this.userData.user}}','email')" class='btn btn-danger'
+                  id='updateDateOfBirth'>verify</a>
+              </div>
+            </div>
+            <div class='licenseNumber'>
+              <input type='number' name='licenseNumber' class='form-control' id='license'
+                placeholder='Enter your license number' />
+                <p id="errorMessageLicense"></p>
+              <div class='d-flex justify-content-center'>
+                <a type='submit' onclick="updateLicense('{{this.userData.user}}','license')" class='btn btn-danger'
+                  id='updateLicense'>submit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{{! otp modal for mobile number and mail address }}
+
+<div class='modal fade bd-example' id='OTPmodal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+  aria-hidden='true'>
+  <div class='modal-dialog mx-auto' role='document'>
+    <div class='modal-content'>
+      <div>
+        <button type='button' class='close' data-bs-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body' style='padding: 0px;'>
+
+        <form method='post' id='verify_otp_editPhone'>
+          <div class='position-relative'>
+            <div class='p-2 text-center'>
+              <h6>Please enter the one time password
+                <br />
+                to verify your account
+              </h6>
+              <div id='otp' class='inputs d-flex flex-row justify-content-center mt-2'>
+                <input class='m-2 text-center form-control rounded' type='text' id='first' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='second' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='third' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='fourth' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='fifth' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='sixth' maxlength='1' name='otp' />
+              </div>
+              <div class='mt-4'>
+                <button type='submit' class='btn btn-danger px-4 validate'>Validate</button>
+              </div>
+              <div style='padding-top:11px ;'>
+                <p>Not get the otp?<a class='pt-2 btn' type='button' id='resent_otp'>resend now</a></p>
+              </div>
+              <div>
+                <p id='invalid_otp'></p>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='modal fade bd-example' id='EmailOTPmodal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+  aria-hidden='true'>
+  <div class='modal-dialog mx-auto' role='document'>
+    <div class='modal-content'>
+      <div>
+        <button type='button' class='close' data-bs-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body' style='padding: 0px;'>
+
+        <form method='post' id='verify_otp_editEmail'>
+          <div class='position-relative'>
+            <div class='p-2 text-center'>
+              <h6>Please enter the one time password
+                <br />
+                to verify your account
+              </h6>
+              <div id='otp' class='inputs d-flex flex-row justify-content-center mt-2'>
+                <input class='m-2 text-center form-control rounded' type='text' id='One' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='Two' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='three' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='four' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='five' maxlength='1' name='otp' />
+                <input class='m-2 text-center form-control rounded' type='text' id='six' maxlength='1' name='otp' />
+              </div>
+              <div class='mt-4'>
+                <button type='submit' class='btn btn-danger px-4 validate'>Validate</button>
+              </div>
+              <div style='padding-top:11px ;'>
+                <p>Not get the otp?<a class='pt-2 btn' type='button' id='resent_otp_email'>resend now</a></p>
+              </div>
+              <div>
+                <p id='invalid_otp_mail'></p>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

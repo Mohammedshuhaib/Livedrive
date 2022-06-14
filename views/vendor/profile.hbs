@@ -1,0 +1,83 @@
+<style>
+    .form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+</style>
+<div class="container rounded bg-white mt-5 mb-5">
+    <form action="/vendor/vendorProfile" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{vendorData.Name}}</span><span class="text-black-50">{{vendorData.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-3">
+                     <div class="col-md-12"><label class="labels">Full name</label><input type="text" class="form-control" required name="username" value="{{vendorData.Name}}"></div>
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="number" class="form-control" required name="mobileNumber" value="{{vendorData.mobile}}"></div>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" name="address" required value="{{vendorData.address}}"></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" required value="{{vendorData.email}}"></div>
+                     <div class="col-md-12"><label class="labels">Id proof</label><input type="file" class="form-control" name="vendorIdProof" onchange="getIdImg(event)"></div>
+                     <div class="col-md-12"><img src="/uploads/{{vendorData.idproof}}" alt="vendor id proof" id="idProofView"></div>
+                    <div class="col-md-12"><label class="labels">Education</label><input type="text" name="education" value="{{vendorData.education}}" class="form-control" placeholder="education"></div>
+                    <input type="password" name="password" value="{{vendorData.password}}" hidden>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" name="country" required value="{{vendorData.country}}"></div>
+                    <div class="col-md-6"><label class="labels">Hub name</label><input type="text" class="form-control" name="hubName" required value="{{vendorData.hubName}}"></div>
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"></div><br>
+                <div class="col-md-12"><label class="labels">Experience</label><input name="expreience" type="text" class="form-control" placeholder="experience" value="{{vendorData.experience}}"></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" name="additionalData" class="form-control" placeholder="additional details" value="{{vendorData.additionalData}}"></div>
+            </div>
+        </div>
+    </div>
+    </form>
+    
+</div>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<div class="signup-form">
+	<form action="/vendor/login-form" method="post">
+		<h2>Login Now</h2>
+		<p class="lead">It's free and hardly takes more than 30 seconds.</p>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" name="username" placeholder="Username" required="required" value="vendor_1">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input type="password" class="form-control" name="password" placeholder="Password" required="required" value="123">
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block btn-lg">login</button>
+		</div>
+		<div class="d-flex justify-content-center">
+			{{#if message}}
+			<p class="text-dark fs-6">{{message}}</p>
+			{{/if}}
+			{{#if errorMessage}}
+			<p class="text-danger fs-6">{{errorMessage}}</p>
+			{{/if}}
+			{{#if loginError}}
+			<p class="text-dark fs-6">{{loginError}}</p>
+			{{/if}}
+		</div>
+
+	</form>
+	<div class="text-center">Dont have an account? <a href="/vendor/signup">signup here</a>.
+
+	</div>

@@ -1,0 +1,166 @@
+<style>
+    .form_container .form-control {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 25px;
+        padding-left: 25px;
+        color: #000000;
+        border-radius: 5px;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .form_container .form-control::-webkit-input-placeholder {
+        color: #222222;
+    }
+
+    .form_container .form-control:-ms-input-placeholder {
+        color: #222222;
+    }
+
+    .form_container .form-control::-ms-input-placeholder {
+        color: #222222;
+    }
+
+    .form_container .form-control::placeholder {
+        color: #222222;
+    }
+
+    .form_container .nice-select .current {
+        font-size: 16px;
+    }
+
+    .form_container button {
+        border: none;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 10px 55px;
+        background-color: red;
+        color: #ffffff;
+        border-radius: 45px;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        border: none;
+    }
+
+    .form_container button:hover {
+        background-color: #750101;
+    }
+
+    .text-button:hover {
+        cursor: pointer;
+    }
+
+    .height-100 {
+        height: 100vh
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div>
+            <a class="btn btn-success mb-2 " data-bs-toggle="modal" data-bs-target="#couponsForm">Add coupons</a>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Coupons</strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Coupon name</th>
+                                <th scope="col">Coupon code</th>
+                                <th scope="col">Expiry Date</th>
+                                <th scope="col">Added Date</th>
+                                <th scope="col">Discount Percentage</th>
+                                <th scope="col">Limit for users</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each couponData}}
+                            <tr>
+                                <td>{{this.coupon.CouponName}}</td>
+                                <td>{{this.coupon.Couponcode}}</td>
+                                <td>{{this.coupon.ExpiryDate}}</td>
+                                <td>{{this.coupon.Createdat}}</td>
+                                <td>{{this.coupon.Discount}}</td>
+                                <td>{{this.coupon.Limit}}</td>
+                                <td><a href="/admin/deleteCoupon{{this.coupon._id}}" class="btn"
+                                        onclick="return confirm('Are you sure to delete')"><i
+                                            class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade bd-example" id="couponsForm" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog mx-auto" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add coupons</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <p id="errmessage"></p>
+                            <div class="form_container">
+                                <form action="/admin/add-coupons" id="addCoupons" method="post" autocomplete="off">
+                                    <div>
+                                        <input type="text" required name="couponName" class="form-control"
+                                            placeholder="Enter coupon name" />
+                                    </div>
+                                    <div>
+                                        <input type="text" required name="Couponcode" class="form-control"
+                                            placeholder="Enter coupon code" />
+                                    </div>
+                                    <div>
+                                        <input type="text" required name="expiryDate" id="couponExpiry" class="form-control"
+                                            placeholder="Expiry date" />
+                                    </div>
+                                    <div>
+                                        <input type="number" required name="OfferAmount" class="form-control"
+                                            placeholder="Offer amout in percentage" />
+                                    </div>
+                                    <div>
+                                        <input type="number" required name="Limit" class="form-control" placeholder="Limit" />
+                                    </div>
+                                    <div>
+                                        <input type="text" required name="Discription" id="couponDiscription" class="form-control"
+                                            placeholder="Enter Discription about this coupon" />
+                                    </div>
+                                    <div class="btn_box text-center mb-4">
+                                        <button type="submit">
+                                            Add now
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            flatpickr("#couponExpiry", {
+                altInput: true,
+                minDate: 'today',
+                allowInput: true,
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                disableMobile: 'true',
+            });
+        </script>

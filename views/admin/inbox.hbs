@@ -1,0 +1,175 @@
+<style>
+    body {
+        margin-top: 20px;
+        background: #eee;
+    }
+
+    /* EMAIL */
+    .email {
+        padding: 20px 10px 15px 10px;
+        font-size: 1em;
+    }
+
+    .email .btn.search {
+        font-size: 0.9em;
+    }
+
+    .email h2 {
+        margin-top: 0;
+        padding-bottom: 8px;
+    }
+
+    .email .nav.nav-pills>li>a {
+        border-top: 3px solid transparent;
+    }
+
+    .email .nav.nav-pills>li>a>.fa {
+        margin-right: 5px;
+    }
+
+    .email .nav.nav-pills>li.active>a,
+    .email .nav.nav-pills>li.active>a:hover {
+        background-color: #f6f6f6;
+        border-top-color: #3c8dbc;
+    }
+
+    .email .nav.nav-pills>li.active>a {
+        font-weight: 600;
+    }
+
+    .email .nav.nav-pills>li>a:hover {
+        background-color: #f6f6f6;
+    }
+
+    .email .nav.nav-pills.nav-stacked>li>a {
+        color: #666;
+        border-top: 0;
+        border-left: 3px solid transparent;
+        border-radius: 0px;
+    }
+
+    .email .nav.nav-pills.nav-stacked>li.active>a,
+    .email .nav.nav-pills.nav-stacked>li.active>a:hover {
+        background-color: #f6f6f6;
+        border-left-color: #3c8dbc;
+        color: #444;
+    }
+
+    .email .nav.nav-pills.nav-stacked>li.header {
+        color: #777;
+        text-transform: uppercase;
+        position: relative;
+        padding: 0px 0 10px 0;
+    }
+
+    .email table {
+        font-weight: 600;
+    }
+
+    .email table a {
+        color: #666;
+    }
+
+    .email table tr.read>td {
+        background-color: #f6f6f6;
+    }
+
+    .email table tr.read>td {
+        font-weight: 400;
+    }
+
+    .email table tr td>i.fa {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        text-align: center;
+    }
+
+    .email table tr td>i.fa-star {
+        color: #f39c12;
+    }
+
+    .email table tr td>i.fa-bookmark {
+        color: #e74c3c;
+    }
+
+    .email table tr>td.action {
+        padding-left: 0px;
+        padding-right: 2px;
+    }
+
+    .grid {
+        position: relative;
+        width: 100%;
+        background: #fff;
+        color: #666666;
+        border-radius: 2px;
+        margin-bottom: 25px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <!-- BEGIN INBOX -->
+
+        <div class="col-md-12">
+            <div class="grid email">
+                <div class="table-responsive ">
+
+                    <table class="table">
+                        <thead>
+                            <th>Name</th>
+                            <th>subject</th>
+                            <th>time</th>
+                            <th>delete</th>
+                        </thead>
+                        {{#each messages}}
+                        <tbody>
+                            <tr>
+
+                                <td class="name"><a>{{message.Name}}</a></td>
+                                <td class="subject"><a onclick="showMessage('{{message.Name}}','{{message.Subject}}','{{message.Email}}','{{message.Message}}')" class="btn"
+                                        data-bs-toggle="modal" data-bs-target="#inboxForm">{{message.Subject}}</a></td>
+                                <td class="time">{{message.Time}}</td>
+                                <td><a href="/admin/deleteMessage/{{message._id}}"><i class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+
+                        </tbody>
+                        {{/each}}
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- END INBOX -->
+</div>
+</div>
+<div class='modal fade bd-example-modal-lg' id='inboxForm' tabindex='-1' role='dialog'
+    aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog mx-auto modal-lg' style='width:1000px ;' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='Nameclind'></h5>
+                <button type='button' class='close' data-bs-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <div class='form_container col-4 col-sm-12'>
+                    <div>
+                        <p id="clindEmail"></p>
+                    </div>
+                    <div>
+                        <p id="clindSubject"></p>
+                    </div>
+                    <div>
+                        <p id="clindMessage"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

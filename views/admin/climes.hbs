@@ -1,0 +1,49 @@
+<div class='content'>
+  <div class='row'>
+
+    <div class='col-md-12'>
+      <div class='card'>
+        <div class='card-header'>
+          <strong class='card-title'>customers</strong>
+        </div>
+        <div class='card-body'>
+          <table id='bootstrap-data-table' class='table table-bordered'>
+            <thead>
+              <tr>
+                <th scope='col'>Vendor Name</th>
+                <th scope='col'>Hub</th>
+                <th scope='col'>Clime Money</th>
+                <th>Approve</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each approvels}}
+                  <tr>
+                    <td>{{this.requests.vendorName}}</td>
+                    <td>{{this.requests.hub}}</td>
+                    <td>{{this.requests.revenue}}</td>
+                    <td class="d-flex justify-content-center"><a onclick="approveClime('{{this.requests._id}}','{{this.requests.revenue}}','{{this.requests.hub}}')" id="btnBlock" class="btn-secondary btn" type="button" >Approve</a></td>
+                  
+                  </tr>
+                {{/each}}
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src='/vendor/js/lib/data-table/datatables.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.buttons.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/jszip.min.js'></script>
+<script src='/vendor/js/lib/data-table/vfs_fonts.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.html5.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.print.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.colVis.min.js'></script>
+<script src='/vendor/js/init/datatables-init.js'></script>

@@ -1,0 +1,239 @@
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+        <!-- Widgets  -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="pe-7s-cash"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text">₹<span class="count">{{revenue.netRevenue}}</span></div>
+                                    <div class="stat-heading">Revenue</div>
+                                </div>
+                            </div>
+                            {{#if showButton}}
+                            <div class="stat-heading">
+                                <a type="button" onclick="reqestMoney('{{vendorName}}')">Request</a>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="pe-7s-map-2"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">{{bookings}}</span></div>
+                                    <div class="stat-heading">bookings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="pe-7s-car"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">{{vehicles}}</span></div>
+                                    <div class="stat-heading">Total vehicles</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="pe-7s-wallet"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">{{wallet}}</span></div>
+                                    <div class="stat-heading">Wallet</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Widgets -->
+        <!--  Traffic  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Chart </h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <canvas id="TrafficChart"></canvas>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-body">
+                                <div class="progress-box progress-1">
+                                    <h4 class="por-title">Revenue Rate</h4>
+                                    <div class="por-txt">{{revenue.netRevenue}} Payments ({{revenue.revenuPerc}}%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-1" role="progressbar"
+                                            style="width: {{revenue.revenuPerc}}%;" aria-valuenow="25" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-box progress-2">
+                                    <h4 class="por-title">Booking Rate</h4>
+                                    <div class="por-txt">{{bookings}} success ({{bookingPers}}%)</div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-flat-color-2" role="progressbar"
+                                            style="width: {{bookingPers}}%;" aria-valuenow="25" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                            </div> <!-- /.card-body -->
+                        </div>
+                    </div> <!-- /.row -->
+
+                </div>
+            </div><!-- /# column -->
+        </div>
+
+        <div class="chart-container col-12 d-flex justify-content-center">
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </div>
+    <!-- .animated -->
+</div>
+
+<!-- Footer -->
+
+<!-- /.site-footer -->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+<!--Chartist Chart-->
+<script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    if ($('#TrafficChart').length) {
+        const ctx = document.getElementById('TrafficChart');
+        ctx.height = 150;
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{{values.days }}],
+            datasets: [
+                {
+                    label: 'Bookings',
+                    borderColor: 'rgba(4, 73, 203,.09)',
+                    borderWidth: '1',
+                    backgroundColor: 'rgba(4, 73, 203,.5)',
+                    data: [{{ bookingValues.price }}],
+        },
+            {
+                label: 'Revenue',
+                borderColor: 'rgba(245, 23, 66, 0.9)',
+                borderWidth: '1',
+                backgroundColor: 'rgba(245, 23, 66,.5)',
+                pointHighlightStroke: 'rgba(245, 23, 66,.5)',
+                data: [{{ values.price }}],
+          },
+        // {
+        //    label: 'Targeted',
+        //    borderColor: 'rgba(40, 169, 46, 0.9)',
+       //    borderWidth: '1',
+        //    backgroundColor: 'rgba(40, 169, 46, .5)',
+         //   pointHighlightStroke: 'rgba(40, 169, 46,.5)',
+        //    data: [1000, 5200, 3600, 2600, 4200, 5300, 0],
+      //    }, 
+        ],
+      },
+    options: {
+        responsive: true,
+            tooltips: {
+            mode: 'index',
+                intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+                intersect: true,
+        },
+         scales: {
+    yAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Price'
+      }
+    }],
+    xAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Dates'
+      }
+    }]
+  }    
+    },
+    });
+  }
+
+    var xValues = ["Bookings", "Revenue", "Vehicles", "Profit"];
+    var yValues = [{{bookings}}, {{revenue.revenue}}, {{vehicles}}, {{wallet}}];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+            }
+        }
+    });
+</script>

@@ -1,0 +1,169 @@
+<div class='content bg-light'>
+  <div class='row addVehicle-form col-12'>
+
+    <form
+      action='/admin/editVehicle{{info.vehicles._id}}'
+      enctype='multipart/form-data'
+      class='form-inline'
+      method='post'
+    >
+
+      <div class='d-flex justify-content-end col-6 mb-4'>
+        <p style='font-size: 25px;' class='text-dark'>Info</p>
+      </div>
+      <div class='col-6 d-flex justify-content-end'>
+        <button class='btn' type='button' id='enableEdit'>Enable edit</button>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='text'
+            id='vehicleName'
+            class='form-control'
+            name='vehicleName'
+            value='{{info.vehicles.Name}} '
+            placeholder={{info.vehicles.Name}}
+            required
+          />
+        </div>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='text'
+            id='vehicleNumber'
+            class='form-control'
+            name='vehicleNumber'
+            value='{{info.vehicles.Number}}'
+            placeholder={{info.vehicles.Number}}
+            required
+          />
+        </div>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='typesOfVehicleEdit' name='type'>
+          <option value='{{info.vehicles.Type}}'>{{info.vehicles.Type}}</option>
+          <option value='car'>car</option>
+          <option value='bike'>bike</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select
+          class='form-select'
+          id='transmissionTypeEdit'
+          name='transmissionType'
+        >
+          <option
+            selected
+            value='{{info.vehicles.Transmissiontype}}'
+          >{{info.vehicles.Transmissiontype}}</option>
+        </select>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='number'
+            class='form-control'
+            id='kilometers'
+            name='Kilometers'
+            value='{{info.vehicles.Kilometers}}'
+            placeholder={{info.vehicles.Kilometers}}
+            required
+          />
+        </div>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='fuelType' name='fuelType'>
+          <option
+            selected
+            value='{{info.vehicles.Fuel_type}}'
+          >{{info.vehicles.Fuel_type}}</option>
+          <option value='petrol'>Petrol</option>
+          <option value='diesel'>Diesel</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='CatogaryType' name='Catagory'>
+          <option
+            selected
+            value='{{info.vehicles.catogory}}'
+          >{{info.vehicles.catogory}}</option>
+          <option value='Hatchback'>Hatchback</option>
+          <option value='suv'>suv</option>
+          <option value='Sedan'>Sedan</option>
+        </select>
+      </div>
+
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='acType' name='Actype'>
+          <option
+            selected
+            value='{{info.vehicles.Actype}}'
+          >{{info.vehicles.Actype}}</option>
+          <option value='Ac'>Ac</option>
+          <option value='Non Ac'>Non Ac</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='seaterType' name='seater'>
+          <option
+            selected
+            value='{{info.vehicles.Seater}}'
+          >{{info.vehicles.Seater}}</option>
+          <option value='2 seater'>2 seater</option>
+          <option value='4 seater'>4 seater</option>
+          <option value='5 seater'>5 seater</option>
+          <option value='6 seater'>6 seater</option>
+          <option value='8 seater'>8 seater</option>
+        </select>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='number'
+            class='form-control'
+            name='Rent'
+            id='rent'
+            value='{{info.vehicles.Rent}}'
+            placeholder={{info.vehicles.Rent}}
+            required
+          />
+        </div>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <input
+          class='form-control col-12 col-md-12 w-100'
+          id='imageFile'
+          name='vehicleImage'
+          type='file'
+          onchange='viewImage(event)'
+        />
+      </div>
+      <div class='col-md-5 col-12 mb-4'>
+        <img
+          src='/uploads/{{info.vehicles.vehicleImage}}'
+          class='col-10'
+          id='imgView'
+          height='200px'
+          alt=''
+          
+        />
+      </div>
+      <div class='col-12 mx-auto'>
+        <button
+          type='submit'
+          id='editVehicle'
+          class='btn btn-primary btn-block btn-lg'
+        >Edit vehicle</button>
+      </div>
+
+      <div class='col-6 mx-auto'>
+        {{#if message}}
+          <p>{{message}}</p>
+        {{/if}}
+      </div>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="signup-form">
+    <form action="/vendor/signup-form" enctype="multipart/form-data" method="post">
+        <h2>Create Account</h2>
+        <p class="lead">It's free and hardly takes more than 30 seconds.</p>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-check"></i>
+                </span>
+                <input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password"
+                    required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <div class="input-group">
+     
+                <span class="input-group-addon">
+                  <i class="fa-solid fa-flag"></i>
+                    <i class="fa fa-check"></i>
+                </span>
+                <select id="country" name="country" class="form-control" required="required">
+                    <option>select country</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                   <i class="fa-solid fa-map-pin"></i>
+                    <i class="fa fa-check"></i>
+                </span>
+                
+                <div id="state-code" class="form-control">
+                    <input class="form-control" name="state" id="state" type="text">
+                </div>
+
+            </div>
+
+        </div>
+        <label for="files_vendor">ID proof</label>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-check"></i>
+                </span>
+                <input type="file" class="form-control" name="vendorIdProof" placeholder="upload id proof"
+                    required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa-brands fa-hubspot"></i>
+                    <i class="fa fa-check"></i>
+                </span>
+                <select class="form-control" name="hubName" id="hub" required>
+                    <option value="0" selected>select hub</option>
+                    <option value="Malappuram">Malappuram</option>
+                    <option value="Perinthalmanna">Perinthalmanna</option>
+                    <option value="Calicut">Calicut</option>
+                    <option value="Kochi">Kochi</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+        </div>
+        <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp;
+                Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
+    </form>
+    <div class="text-center">Already have an account? <a href="/vendor">Login here</a>.</div>

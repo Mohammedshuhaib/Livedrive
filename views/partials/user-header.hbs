@@ -1,0 +1,378 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
+
+
+
+
+
+
+        {{#if session.userLogin}}
+        <div class="container">
+
+
+            <a class="navbar-brand" href="/">Live<span>Drive</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-circle-user"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/" class="nav-link " id="btn">Home</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link" id="btn">About</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link" id="btn">Contact</a></li>
+                    <li class="nav-item"><a href="/profile" class="nav-link" id="btn">My profile</a></li>
+                    <li class="nav-item"><a href="/booking" class="nav-link" id="btn">bookings</a></li>
+                         <li class="nav-item pt-2"><a href="/cart" class="nav-link pt-2"><i
+                                class="fa-solid fa-cart-shopping">My plan</i><span id="cartBadge"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{cartData}}
+                            </span></a></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link"><i
+                                class="fa-solid fa-right-from-bracket"></i>logout</a></li>
+
+                </ul>
+            </div>
+        </div>
+        {{else}}
+        <a class="navbar-brand" href="/">Live<span>Drive</span></a>
+
+        <div class="d-flex flex-row order-2 order-lg-3 ">
+            <div class="dropdown">
+                <a href="#" class="btn" id="btn_login" data-bs-toggle="modal" data-bs-target="#loginForm"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                    </svg></a>
+
+                <!-- Modal -->
+                <div class="modal fade bd-example" id="loginForm" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <p id="errmessage"></p>
+                                    <div class="form_container">
+                                        <form action="/login" id="userLoginForm" method="post" autocomplete="off">
+                                            <div>
+                                                <input type="text" name="userName" class="form-control"
+                                                    placeholder="Your name" value="shuhaib" />
+                                            </div>
+                                            <div>
+                                                <input type="password" name="password" class="form-control"
+                                                    placeholder="Your password" id="login_password" value="12345678" />
+                                            </div>
+                                            <div class="btn_box text-center mb-4">
+                                                <button type="submit">
+                                                    Login
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="/#" id="forgot_password" data-bs-toggle="modal"
+                                                data-bs-target="#forgot_modal" class="text-primary">forgot password</a>
+                                        </div>
+                                        <div>
+                                            <p>Dont have an account <a id="into_signup" href="/#" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">signup here</a></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- forgot password modal --}}
+                <div class="modal fade bd-example" id="forgot_modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Forgot password</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <p id="errmessage"></p>
+                                    <div class="form_container">
+                                        <form action="/forgot" id="verify_forgot_password" method="post"
+                                            autocomplete="off">
+                                            <div>
+                                                <input type="number" name="phone_number" class="form-control"
+                                                    placeholder="Enter your mobile number" />
+                                            </div>
+                                            <div class="btn_box text-center mb-4">
+                                                <button type="submit">
+                                                    verify
+                                                </button>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <p id="exist"></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{!-- end forgot password --}}
+                {{!-- otp verification for forgot password --}}
+                <div class="modal fade bd-example" id="make_new_password" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;">
+
+                                <form action="/verify_otp_for_password" method="post" id="verify_otp_for_password">
+                                    <div class="position-relative">
+                                        <div class=" p-2 text-center">
+                                            <h6>Please enter the one time password <br> to verify your account
+                                            </h6>
+                                            <div> <span>A code has been sent to</span>
+                                                <small id="otp_sent_forgot"></small>
+                                            </div>
+                                            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                                                <input class="m-2 text-center form-control rounded" type="text"
+                                                    id="first" maxlength="1" name="otp_f" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="second"
+                                                    maxlength="1" name="otp_f" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="third"
+                                                    maxlength="1" name="otp_f" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="fourth"
+                                                    maxlength="1" name="otp_f" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="fifth"
+                                                    maxlength="1" name="otp_f" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="sixth"
+                                                    maxlength="1" name="otp_f" />
+                                            </div>
+                                            <div class="mt-4"> <button type="submit"
+                                                    class="btn btn-danger px-4 validate">Validate</button>
+                                            </div>
+                                            <div style="padding-top:11px ;">
+                                                <p>Not get the otp?<a class="pt-2 btn" id="resent_otp_fotgot"
+                                                        type="button">resent now</a></p>
+                                            </div>
+                                            <div>
+                                                <p id="invalid_otp_forgot"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- make new pasword --}}
+                <div class="modal fade bd-example" id="new_password-modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">change password</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <div class="form_container">
+                                        <form action="/make_new_password" id="new_password" method="post"
+                                            autocomplete="off">
+
+                                            <div>
+                                                <input type="password" name="password" class="form-control"
+                                                    id="password_forgot" placeholder="Enter your new password" />
+                                            </div>
+                                            <div>
+                                                <input type="password" name="confirm_password" class="form-control"
+                                                    placeholder="Confirm your password" />
+                                            </div>
+                                            <div class="btn_box text-center mb-4">
+                                                <button type="submit">
+                                                    change password
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{!-- verify otp for signup --}}
+                <div class="modal fade bd-example" id="OTPmodel" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;">
+
+                                <form action="/verify" method="post" id="verify_otp">
+                                    <div class="position-relative">
+                                        <div class=" p-2 text-center">
+                                            <h6>Please enter the one time password <br> to verify your account
+                                            </h6>
+                                            <div> <span>A code has been sent to</span>
+                                                <small id="otp_sent"></small>
+                                            </div>
+                                            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                                                <input class="m-2 text-center form-control rounded" type="text"
+                                                    id="first" maxlength="1" name="otp" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="second"
+                                                    maxlength="1" name="otp" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="third"
+                                                    maxlength="1" name="otp" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="fourth"
+                                                    maxlength="1" name="otp" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="fifth"
+                                                    maxlength="1" name="otp" /> <input
+                                                    class="m-2 text-center form-control rounded" type="text" id="sixth"
+                                                    maxlength="1" name="otp" />
+                                            </div>
+                                            <div class="mt-4"> <button type="submit"
+                                                    class="btn btn-danger px-4 validate">Validate</button>
+                                            </div>
+                                            <div style="padding-top:11px ;">
+                                                <p>Not get the otp?<a class="pt-2 btn" type="button"
+                                                        id="resent_otp">resend now</a></p>
+                                            </div>
+                                            <div>
+                                                <p id="invalid_otp"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade bd-example" id="password-modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">signup</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <div class="form_container">
+                                        <form  id="password_signup" autocomplete="off">
+
+                                            <div>
+                                                <input type="password" name="password" class="form-control"
+                                                    id="password" placeholder="Enter your password" />
+                                            </div>
+                                            <div>
+                                                <input type="password" name="confirm_password" class="form-control"
+                                                    placeholder="Confirm your password" />
+                                            </div>
+                                            <div class="btn_box text-center mb-4">
+                                                <button type="submit">
+                                                    signup Now
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bd-example" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog mx-auto" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">signup</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <p id="please_signup"></p>
+                                    <div class="form_container">
+                                        <form id="signupFormSubmit" method="post" autocomplete="off">
+                                            <div>
+                                                <input type="text" name="userName" class="form-control" id="user_name"
+                                                    placeholder="Enter your user name" />
+                                            </div>
+                                            <div>
+                                                <input type="number" name="phone_number" class="form-control"
+                                                    placeholder="Your phone number" />
+                                            </div>
+                                            <div class="btn_box text-center mb-4">
+                                                <button type="submit">
+                                                    signup
+                                                </button>
+
+                                                <p id="user_exist" class="text-danger" style="font-size:15 ;"></p>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{!-- <div class="modal-footer">
+
+                </div> --}}
+            </div>
+        </div>
+        </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav"
+            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse order-3 order-lg-2" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="/" class="nav-link" id="btn">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link" id="btn">About</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link" id="btn">Contact</a></li>
+            </ul>
+        </div>
+
+        </div>
+        {{/if}}
+    </nav>
+</header>

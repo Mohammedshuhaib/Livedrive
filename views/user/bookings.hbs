@@ -1,0 +1,263 @@
+
+<div class='container'>
+  <section class='mx-2 pb-3'>
+
+    <ul class='nav nav-tabs md-tabs' id='myTabMD' role='tablist'>
+      <li class='nav-item waves-effect waves-light'>
+        <a class='nav-link booking-content active' id='active-tab-md' data-bs-toggle='tab' href='#active-md' role='tab'
+          aria-controls='active-md' aria-selected='true'>Active</a>
+      </li>
+      <li class='nav-item waves-effect waves-light'>
+        <a class='nav-link booking-content' id='upcoming-tab-md' data-bs-toggle='tab' href='#upcoming-md' role='tab'
+          aria-controls='upcoming-md' aria-selected='false'>Upcoming</a>
+      </li>
+      <li class='nav-item waves-effect waves-light'>
+        <a class='nav-link booking-content' id='compleated-tab-md' data-bs-toggle='tab' href='#compleated-md' role='tab'
+          aria-controls='compleated-md' aria-selected='false'>Completed</a>
+      </li>
+      <li class='nav-item waves-effect waves-light'>
+        <a class='nav-link booking-content' id='cancelled-tab-md' data-bs-toggle='tab' href='#cancelled-md' role='tab'
+          aria-controls='cancelled-md' aria-selected='false'>Cancelled</a>
+      </li>
+    </ul>
+  </section>
+</div>
+<div class='container col-12'>
+  <section>
+    <div class='tab-content card col-12' id='myTabContentMD'>
+      {{! active }}
+      <div class='tab-pane fade show active' id='active-md' role='tabpanel' aria-labelledby='active-tab-md'>
+        {{#each activeBooking}}
+        <div class='d-flex'>
+          <div>
+            <img class='booking-img' src='/uploads/{{this.booking.vehicleImage}}' height='120px' alt='' />
+          </div>
+          <div class='mt-4 px-3'>
+            <p class='booking_main_text'>{{this.booking.Name}}</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+        </div>
+        <div class='container'>
+          <div class='d-flex justify-content-between w-75 mx-auto'>
+            <div>
+              <p class='pick-drop text-dark'>PICKUP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.pickUpDate}}</p>
+            </div>
+            <div>
+              <p class='duration'>duration</p>
+              <div class='container aditionals'>
+
+                <div class='circle'>
+                  <p class='pt-2' style='padding-left:15px ;'>{{this.booking.Days}}d</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class='pick-drop text-dark'>DROP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.dropDate}}</p>
+            </div>
+          </div>
+          <div>
+            <p>Payment details</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+          <div class='d-flex text-dark booking-content'>
+            <div>
+              <span class='d-flex'>
+                <p>Total amount : </p>
+                <p class='pl-3'>RS:{{this.booking.Rent}}</p>
+              </span>
+            </div>
+            <div class='ml-auto booking-content'>
+              <span class='d-flex'>
+                <p class='mr-4'>Payment status:</p><a href='' class='btn btn-secondary mb-2'>{{this.booking.status}}</a>
+              </span>
+            </div>
+          </div>
+ <hr style='margin-top: 10px;height: 1px ; background-color: black;' />
+        </div>
+        {{/each}}
+      </div>
+      {{! active end }}
+      {{! upcoming start }} 
+
+      <div class='tab-pane fade show' id='upcoming-md' role='tabpanel' aria-labelledby='upcoming-tab-md'>
+              {{#each bookingsData}}
+        <div class='d-flex'>
+          <div>
+            <img class='booking-img' src='/uploads/{{this.booking.vehicleImage}}' height='120px' alt='vehicle image' />
+          </div>
+          <div class='mt-4 px-3'>
+            <p class='booking_main_text'>{{this.booking.Name}}</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+          <div class='ml-auto mt-5 mr-4'>
+            <a onclick="cancelBooking('{{this.booking._id}}')" class='btn btn-danger'>Cancel</a>
+          </div>
+        </div>
+
+        <div class='container'>
+          <div class='d-flex justify-content-between w-75 mx-auto'>
+            <div>
+              <p class='pick-drop text-dark'>PICKUP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.pickUpDate}}</p>
+            </div>
+            <div>
+              <p class='duration'>duration</p>
+              <div class='container aditionals'>
+
+                <div class='circle'>
+                  <p class='pt-2' style='padding-left:15px ;'>{{this.booking.Days}}d</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class='pick-drop text-dark'>DROP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.dropDate}}</p>
+            </div>
+          </div>
+          <div>
+            <p>Payment details</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+          <div class='d-flex text-dark booking-content'>
+            <div>
+              <span class='d-flex'>
+                <p>Total amount : </p>
+                <p class='pl-3'>RS:{{this.booking.Rent}}</p>
+              </span>
+            </div>
+            <div class='ml-auto booking-content'>
+              <span class='d-flex'>
+                <p class='mr-4'>Payment status:</p><a href='' class='btn btn-secondary mb-2'>{{this.booking.status}}</a>
+              </span>
+            </div>
+          </div>
+ <hr style='margin-top: 10px;height: 1px ; background-color: black;' />
+        </div>
+           {{/each}}
+           
+      </div>
+ 
+       
+      {{! upcoming end }}
+      {{! compleatd start }}
+      <div class='tab-pane fade show' id='compleated-md' role='tabpanel' aria-labelledby='compleated-tab-md'>
+        {{#each compleatedBooking}}
+        <div class='d-flex'>
+          <div>
+            <img class='booking-img' src='/uploads/{{this.booking.vehicleImage}}' height='120px' alt='' />
+          </div>
+          <div class='mt-4 px-3'>
+            <p class='booking_main_text'>{{this.booking.Name}}</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+        </div>
+        <div class='container'>
+          <div class='d-flex justify-content-between w-75 mx-auto'>
+            <div>
+              <p class='pick-drop text-dark'>PICKUP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.pickUpDate}}</p>
+            </div>
+            <div>
+              <p class='duration'>duration</p>
+              <div class='container aditionals'>
+
+                <div class='circle'>
+                  <p class='pt-2' style='padding-left:20px ;'>{{this.booking.Days}}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class='pick-drop text-dark'>DROP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.dropDate}}</p>
+            </div>
+          </div>
+          <div>
+            <p>Payment details</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+          <div class='d-flex text-dark booking-content'>
+            <div>
+              <span class='d-flex'>
+                <p>Total amount : </p>
+                <p class='pl-3'>RS:{{this.booking.Rent}}</p>
+              </span>
+            </div>
+            <div class='ml-auto booking-content'>
+              <span class='d-flex'>
+                <p class='mr-4'>Payment status:</p><a href='' class='btn btn-secondary mb-2'>{{this.booking.status}}</a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        {{/each}}
+      </div>
+      {{! compleated end }}
+      {{! cancelled start }}
+      <div class='tab-pane fade show' id='cancelled-md' role='tabpanel' aria-labelledby='cancelled-tab-md'>
+        {{#each cancelledBooking}}
+        <div class='d-flex'>
+          <div>
+            <img class='booking-img' src='/uploads/{{this.booking.vehicleImage}}' height='120px' alt='' />
+          </div>
+          <div class='mt-4 px-3'>
+            <p class='booking_main_text'>{{this.booking.Name}}</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+        </div>
+        <div class='container'>
+          <div class='d-flex justify-content-between w-75 mx-auto'>
+            <div>
+              <p class='pick-drop text-dark'>PICKUP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.pickUpDate}}</p>
+            </div>
+            <div>
+              <p class='duration'>duration</p>
+              <div class='container aditionals'>
+
+                <div class='circle'>
+                  <p class='pt-2' style='padding-left:15px ;'>{{this.booking.Days}}d</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class='pick-drop text-dark'>DROP</p>
+              <p class='pick-drop-date text-dark'>DATE</p>
+              <p class='enterDate text-danger'>{{this.booking.dropDate}}</p>
+            </div>
+          </div>
+          <div>
+            <p>Payment details</p>
+            <hr style='margin-top: -10px;height: 1px ; background-color: black;' />
+          </div>
+          <div class='d-flex text-dark booking-content'>
+            <div>
+              <span class='d-flex'>
+                <p>Total amount : </p>
+                <p class='pl-3'>RS:{{this.booking.Rent}}</p>
+              </span>
+            </div>
+            <div class='ml-auto booking-content'>
+              <span class='d-flex'>
+                <p class='mr-4'>Refund:</p><a href='' class='btn btn-secondary mb-2'>success</a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        {{/each}}
+        {{! cancelled end }}
+      </div>
+    </div>
+
+  </section>
+</div>

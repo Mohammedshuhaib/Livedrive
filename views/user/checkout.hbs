@@ -1,0 +1,247 @@
+<div class='container wow fadeIn'>
+
+  <!-- Heading -->
+  <h2 class='my-3 h2 text-center'>Checkout</h2>
+
+  <!--Grid row-->
+  <form id='booknow' enctype='multipart/form-data'>
+    <div class='row'>
+
+      <!--Grid column-->
+      <div class='col-md-8 mb-4'>
+
+        <!--Card-->
+        <div class='card'>
+
+          <!--Card content-->
+          <div class='card-body'>
+
+            <div class='mb-5 d-flex justify-content-center'>
+              <h4>Persional details</h4>
+            </div>
+
+            <!--Username-->
+            <div class='md-form mb-3'>
+              <input
+                type='text'
+                required
+                id='UserName'
+                disabled
+                name='name'
+                value='{{this.userData.user}}'
+                class='form-control'
+              />
+              <label for='UserName' class=''>Name</label>
+            </div>
+
+            <!--email-->
+            <div class='md-form mb-3'>
+              <p id='emailError' class='text-danger mb-0'></p>
+              <input
+                type='text'
+                required
+                id='email'
+                name='email'
+                value='{{this.userData.email}}'
+                class='form-control'
+              />
+              <div class="d-flex justify-content-between">
+                <label for='email'>Email</label>
+              </div>
+
+            </div>
+
+            <!--address-->
+            <div class='md-form mb-3'>
+              <input
+                type='Number'
+                required
+                id='address'
+                name='number'
+                disabled
+                value='{{this.userData.number}}'
+                class='form-control'
+              />
+              <label for='address' class=''>Mobile number</label>
+            </div>
+
+            <!--address-2-->
+            <div class='md-form mb-3'>
+              <p id='idProofError' class='text-danger mb-0'></p>
+              <input
+                type='file'
+                id='idProof'
+                name='userIdProof'
+                onchange='getIdProof(event)'
+                class='form-control'
+              />
+              <img
+                src='/uploads/{{this.userData.idProof}}'
+                alt='id proof'
+                id='idProofImg'
+                height='150px'
+                class='col-12'
+              />
+              <label for='idProof' class=''>id proof</label>
+            </div>
+
+            <!--Grid row-->
+
+            <hr class='mb-4' />
+            <button
+              class='btn-primary btn-lg btn-block'
+              id='payNow'
+              onclick='return checkIdProof()'
+              value='Pay Now'
+            >Pay Now</button>
+
+          </div>
+
+        </div>
+        <!--/.Card-->
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class='col-md-4 mb-4'>
+
+        <!-- Heading -->
+        <h4 class='d-flex justify-content-between align-items-center mb-3'>
+          <span class='text-muted'>Your items</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class='list-group mb-3 z-depth-1'>
+          {{#if session.fromCart}}
+            {{#each cart}}
+              {{#each this}}
+                <input type='text' name='purpose' value='cart' hidden />
+                <li
+                  class='list-group-item d-flex justify-content-between lh-condensed'
+                >
+                  <div>
+                    <h6 class='my-0'>{{this.Name}}</h6>
+                    <small class='text-muted'>{{this.Days}}days</small>
+                  </div>
+                  <span class='text-muted'>{{this.Rent}}</span>
+                </li>
+              {{/each}}
+            {{/each}}
+          {{/if}}
+          {{#if session.FromDetails}}
+            <input type='text' name='purpose' value='details' hidden />
+            <li
+              class='list-group-item d-flex justify-content-between lh-condensed'
+            >
+              <div>
+                <h6 class='my-0'>{{vehicle.vehicles.Name}}</h6>
+                <small class='text-muted'>{{days}}days</small>
+              </div>
+              <span class='text-muted'>{{vehicle.vehicles.Rent}}</span>
+            </li>
+          {{/if}}
+          <div id='couponModal'>
+            <p class='coupons'>have any coupons
+              <a
+                data-bs-toggle='modal'
+                data-bs-target='#couponsForm'
+                class='ml-2 btn'
+                type='submit'
+              >apply here</a>
+            </p>
+          </div>
+          <li class='list-group-item d-flex justify-content-between bg-light'>
+            <div class='text-success'>
+              <h6 class='my-0'>Promo code</h6>
+              <small>{{couponCode}}</small>
+            </div>
+            <span class='text-success'>-{{Discount}}</span>
+          </li>
+          <li class='list-group-item d-flex justify-content-between'>
+            <span>Total price</span>
+            <strong>{{totalFare}}</strong>
+            <input type='text' value='{{totalFare}}' name='totalFare' hidden />
+          </li>
+        </ul>
+      
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+  </form>
+  <!--Grid row-->
+
+</div>
+
+<div
+  class='modal fade bd-example-modal-lg'
+  id='couponsForm'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='exampleModalLabel'
+  aria-hidden='true'
+>
+  <div
+    class='modal-dialog mx-auto modal-lg'
+    style='width:1000px ;'
+    role='document'
+  >
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Add coupons</h5>
+        <button
+          type='button'
+          class='close'
+          data-bs-dismiss='modal'
+          aria-label='Close'
+        >
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        {{#each coupons}}
+          <div class='form_container col-4 col-sm-12'>
+            <div class='p-0 rounded-3 mb-4 card'>
+              <div class='card-body'>
+                <div
+                  class='row d-flex justify-content-between align-items-center'
+                >
+                  <div class='col-12 d-flex justify-content-center'>
+                    <small
+                      class='mb-2 coupon-header'
+                    >{{this.coupon.CouponName}}</small>
+                  </div>
+                  <div>
+                    <small class='mb-0 coupon-footer'>Coupon code:
+                      {{this.coupon.Couponcode}}</small>
+                  </div>
+                  <div>
+                    <small class='mb-0 coupon-footer'>Discount:
+                      {{this.coupon.Discount}}%</small>
+                  </div>
+                  <div>
+                    <a
+                      onclick="applyCoupon('{{this.coupon.Discount}}','{{this.coupon.Couponcode}}','{{this.coupon._id}}')"
+                      class='text-light btn btn-danger'
+                    >Apply now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src='/javascripts/main.js'></script>
+<script>
+
+  function getIdProof(event) { document.getElementById('idProofImg').src =
+  URL.createObjectURL( event.target.files[0], ); }
+
+</script>

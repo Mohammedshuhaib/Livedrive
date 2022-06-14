@@ -1,0 +1,126 @@
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/admin/home"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>vehicles</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa-solid fa-car-side"></i><a href="/admin/cars">Cars</a></li>
+                        <li><i class="menu-icon fa-solid fa-motorcycle"></i><a href="/admin/bikes">Bikes</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Bookings</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="/admin/bookings">All bookings</a></li>
+                        <li><i class="fa fa-table"></i><a href="/admin/compleated-bookings">Completed</a></li>
+                        <li><i class="fa fa-table"></i><a href="/admin/active-bookings">Active</a></li>
+                        <li><i class="fa fa-table"></i><a href="/admin/upcoming-booking">Upcoming</a></li>
+                        <li><i class="fa fa-table"></i><a href="/admin/cancelled-booking">Cancelled</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/customers"> <i class="fa-solid fa-users menu-icon"></i>Customers</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fa-solid fa-users-gear menu-icon"></i>vendors</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa-solid fa-person-circle-check"></i><a href="/admin/approvedVendors">Approved</a>
+                        </li>
+                        <li><i class="fa-solid fa-person-circle-exclamation"></i><a href="/admin/NotApprovedVendors">Not
+                                approved</a></li>
+                        <li><i class="fa-solid fa-wallet"></i><a href="/admin/climeRequests">
+                                Clime approvals</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/coupons"> <span class="material-icons menu-icon">
+                            local_offer
+                        </span>Coupons</a>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/admin/">Live<span>Drive</span></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+
+            </div>
+
+        </div>
+        <div class="top-right">
+            <div class="header-menu">
+                <div class="header-left">
+                    {{!-- <button class="search-trigger"><i class="fa fa-search"></i></button>
+                    <div class="form-inline">
+                        <form class="search-form">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
+                                aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                        </form>
+                    </div> --}}
+
+                    <div class="dropdown for-notification">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">{{session.notificationLength}}</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="notification">
+                            <a href="/admin/clearNotifi" class="red btn mx-auto">Clear notification</a>
+                            {{#each notiMessage}}
+                            <a class="dropdown-item media">
+                                <i class="fa fa-check"></i>
+                                <p>{{this}}</p>
+                            </a>
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="dropdown for-message">
+                        <a type="button" href="/admin/inbox" class="btn btn-secondary dropdown-toggle" type="button"
+                            id="message">
+                            <i class="fa fa-envelope"></i>
+                            <span class="count bg-primary">{{session.messageLength}}</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img class="user-avatar rounded-circle" src="/vendor/images/admin.jpg" alt="User Avatar">
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        {{!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
+                                class="count">13</span></a>
+
+                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> --}}
+
+                        <a class="nav-link" href="/admin/logout"><i class="fa fa-power -off"></i>Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>

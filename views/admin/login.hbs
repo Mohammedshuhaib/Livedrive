@@ -1,0 +1,29 @@
+<div class="signup-form">
+	<form action="/admin/login-form" method="post">
+		<h2>Login Now</h2>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" name="username" placeholder="Username" required="required" value="admin_12">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input type="password" class="form-control" name="password" placeholder="Password" required="required" value="1234">
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block btn-lg">login</button>
+		</div>
+		<div class="d-flex justify-content-center">
+			{{#if message}}
+			<p class="text-dark fs-6">{{message}}</p>
+			{{/if}}
+			{{#if errorMessage}}
+			<p class="text-danger fs-6">{{errorMessage}}</p>
+			{{/if}}
+		</div>
+
+	</form>
+

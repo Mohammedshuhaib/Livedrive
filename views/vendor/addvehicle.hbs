@@ -1,0 +1,129 @@
+<div class='content bg-light'>
+  <div class='row addVehicle-form col-10'>
+    <form
+      action='/vendor/vehicle-form'
+      id="vehicleAdded"
+      enctype='multipart/form-data'
+      class='form-inline'
+      method='post'
+    >
+      <div class='d-flex justify-content-center col-12 mb-4'>
+        <p style='font-size: 25px;' class='text-dark'>Add a vehicle</p>
+      </div>
+
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='vehicleName'
+            placeholder='Name'
+            required='required'
+          />
+        </div>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='text'
+            class='form-control'
+            name='vehicleNumber'
+            placeholder='vehicle number'
+            required='required'
+          />
+        </div>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='typesOfVehicle' name='type'>
+          <option selected> choose type</option>
+          <option value='bike'>Bike</option>
+          <option value='car'>Car</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select
+          class='form-select'
+          id='transmissionType'
+          name='transmissionType'
+        >
+          <option selected>Transmission type</option>
+        </select>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='number'
+            class='form-control'
+            name='Kilometers'
+            placeholder='Kilometers covered'
+            required='required'
+          />
+        </div>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='inputGroupSelect02' name='fuelType'>
+          <option selected>Fuel type</option>
+          <option value='petrol'>Petrol</option>
+          <option value='diesel'>Diesel</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='Catogary' name='Catagory'>
+          <option selected value='null'>Category</option>
+          <option value='Hatchback'>Hatchback</option>
+          <option value='suv'>suv</option>
+          <option value='Sedan'>Sedan</option>
+        </select>
+      </div>
+
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='AcType' name='Actype'>
+          <option selected value='null'>Ac or Non Ac</option>
+          <option value='Ac'>Ac</option>
+          <option value='Non Ac'>Non Ac</option>
+        </select>
+      </div>
+      <div class='input-group mb-4 col-md-6 col-12'>
+        <select class='form-select' id='inputGroupSelect02' name='seater'>
+          <option selected value='null'>Seats count</option>
+          <option value='2 seater'>2 seater</option>
+          <option value='4 seater'>4 seater</option>
+          <option value='5 seater'>5 seater</option>
+          <option value='6 seater'>6 seater</option>
+          <option value='8 seater'>8 seater</option>
+        </select>
+      </div>
+      <div class='col-md-6 col-12 mb-4'>
+        <div class='input-group'>
+          <input
+            type='number'
+            class='form-control'
+            name='Rent'
+            placeholder='Enter the rent'
+            required='required'
+          />
+        </div>
+      </div>
+      <div class='col-md-12 mb-4'>
+        <input
+          class='form-control col-12 col-md-12 w-100'
+          id='formFileLg'
+          name='vehicleImg'
+          type='file'
+        />
+      </div>
+      <div class='col-4 mx-auto'>
+        <button type='submit' class='btn btn-primary btn-block btn-lg'>Add a
+          vehicle now</button>
+      </div>
+      {{#if vehicleAdded}}
+        <div class="col-12 d-flex justify-content-center mt-3">
+           <p class="text-success">Vehicle added successfully</p>
+        </div>
+       
+
+      {{/if}}
+    </form>
+  </div>
+</div>
+<script src="/vendor/js/main.js"></script>

@@ -1,0 +1,66 @@
+<div class='content'>
+  <div class='row'>
+
+    <div class='col-md-12'>
+      <div class='card'>
+        <div class='card-header'>
+          <strong class='card-title'>customers</strong>
+        </div>
+        <div class='card-body'>
+          <table id='bootstrap-data-table' class='table table-bordered'>
+            <thead>
+              <tr>
+                <th scope='col'>Profile Pic</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Mobile number</th>
+                <th scope='col'>License number</th>
+                <th scope="col">Date of birth</th>
+                <th scope='col'>Id proof</th>
+                <th> Block</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each userData}}
+                  <tr>
+                    <td><img
+                        src='/uploads/{{this.profileImage}}'
+                        height='50px'
+                        alt=''
+                      /></td>
+                    <td>{{this.user}}</td>
+                    <td>{{this.number}}</td>
+                    <td>{{this.licenseNumber}}</td>
+                    <td>{{this.dateOfBirth}}</td>
+                    <td><img
+                        src='/uploads/{{this.idProof}}'
+                        height='50px'
+                        alt=''
+                      /></td>
+                      {{#if blocked}}
+                      <td class="d-flex justify-content-center"><a href="/admin/unBlockTheUser/{{this._id}}" id="btnBlock" class="btn-secondary btn" >Unblock</a></td>
+                      {{else}}
+                   <td class="d-flex justify-content-center"><a href="/admin/blockTheUser/{{this._id}}"  onclick="return confirm('Are you sure to block')" id="btnBlock" class="btn-danger btn" >Block</a></td>
+                   {{/if}}
+                  </tr>
+                {{/each}}
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src='/vendor/js/lib/data-table/datatables.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/dataTables.buttons.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.bootstrap.min.js'></script>
+<script src='/vendor/js/lib/data-table/jszip.min.js'></script>
+<script src='/vendor/js/lib/data-table/vfs_fonts.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.html5.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.print.min.js'></script>
+<script src='/vendor/js/lib/data-table/buttons.colVis.min.js'></script>
+<script src='/vendor/js/init/datatables-init.js'></script>
