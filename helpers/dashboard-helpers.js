@@ -62,7 +62,7 @@ module.exports = {
       resolve(response);
     } else {
       const netRevenue = 0;
-      const revenuPerc = (revenue[0].Total_Fare - netRevenue) * 100;
+      const revenuPerc = 0;
       const response = {
         revenuPerc,
         netRevenue,
@@ -74,7 +74,7 @@ module.exports = {
   //   total bookings count vendor
 
   getTotalBookings: (hub) => new Promise(async (resolve, reject) => {
-    const bookings = await db
+    let bookings = await db
       .get()
       .collection(collection.USER_COLLECTION)
       .aggregate([
@@ -98,8 +98,8 @@ module.exports = {
     if (bookings[0]) {
       resolve(bookings[0].product);
     } else {
-      const booking = 0;
-      resolve(booking);
+      bookings = 0;
+      resolve(bookings);
     }
   }),
 
@@ -324,7 +324,7 @@ module.exports = {
   // -------------------------admin start------------------------------
 
   getTotalRevenueAdmin: () => new Promise(async (resolve, reject) => {
-    const revenue = await db
+    let revenue = await db
       .get()
       .collection(collection.USER_COLLECTION)
       .aggregate([
@@ -461,11 +461,16 @@ module.exports = {
       price.push(p);
     }
 
-    const response = {
+    let response = {
       price,
       days,
     };
-    resolve(response);
+    if (response) {
+      resolve(response);
+    } else {
+      response = 0;
+      resolve(response);
+    }
   }),
 
   getAdminBookingValues: () => new Promise(async (resolve, reject) => {
@@ -514,15 +519,20 @@ module.exports = {
       price.push(p);
     }
 
-    const response = {
+    let response = {
       price,
       days,
     };
-    resolve(response);
+    if (response) {
+      resolve(response);
+    } else {
+      response = 0;
+      resolve(response);
+    }
   }),
 
   getAllBookingsAdmin: () => new Promise(async (resolve, reject) => {
-    const bookings = await db
+    let bookings = await db
       .get()
       .collection(collection.USER_COLLECTION)
       .aggregate([
@@ -540,8 +550,8 @@ module.exports = {
     if (bookings[0]) {
       resolve(bookings[0].product);
     } else {
-      const booking = 0;
-      resolve(booking);
+      bookings = 0;
+      resolve(bookings);
     }
   }),
 
