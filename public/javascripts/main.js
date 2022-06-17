@@ -469,21 +469,6 @@ $('#password_signup').validate({
   errorPlacement(error, element) {
     error.insertBefore(element);
   },
-  submitHandler(form) {
-    $.ajax({
-      type: 'POST',
-
-      data: $(form).serialize(), // serializes the form's elements.
-      url: '/sighnup',
-      success(data) {
-        if (data.verified) {
-          $('#password-modal').modal('hide');
-          $('#loginForm').modal('show');
-          $('#errmessage').text('Registerd succesfully please login again');
-        }
-      },
-    });
-  },
 });
 
 // singnukp form submit
@@ -515,7 +500,6 @@ $('#signupFormSubmit').validate({
   submitHandler(form) {
     $.ajax({
       type: 'POST',
-
       data: $(form).serialize(), // serializes the form's elements.
       url: '/signupform',
       success(data) {
@@ -594,7 +578,6 @@ $('#verify_otp_for_password').validate({
       url: '/verify_otp_for_password',
       success(data) {
         if (data.verified) {
-          console.log('ok');
           $('#make_new_password').modal('hide');
           $('#new_password-modal').modal('show');
         }
@@ -646,9 +629,10 @@ $('#new_password').validate({
     confirm_password: {
       equalTo: 'password should be same',
     },
-  },
-  errorPlacement(error, element) {
-    error.insertBefore(element);
+    errorPlacement(error, element) {
+      error.insertBefore(element);
+    },
+
   },
 });
 
@@ -1084,4 +1068,3 @@ function applyCoupon(discount, couponcode, couponId) {
     },
   });
 }
-

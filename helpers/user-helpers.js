@@ -87,7 +87,11 @@ module.exports = {
         { $set: { password: data.password } },
       );
     if (updated) {
-      resolve();
+      const user = await db
+        .get()
+        .collection(collection.USER_COLLECTION)
+        .findOne({ number: data.number });
+      resolve(user);
     }
   }),
   findSigleUser: (userName) => new Promise(async (resolve, reject) => {

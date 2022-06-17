@@ -77,12 +77,11 @@ router.post('/forgot', (req, res) => {
 router.post('/verify_otp_for_password', (req, res) => {
   // eslint-disable-next-line camelcase
   const phone_number = req.session.forgotMobile;
-  const { otp_f } = req.body;
-  otp = otp_f.join('');
+  let { otp_f } = req.body;
+  otp_f = otp_f.join('');
   otpHelpers
-    .verifyOtp(otp, phone_number)
+    .verifyOtp(otp_f, phone_number)
     .then((verification_check) => {
-      console.log(verification_check.status);
       if (verification_check.status == 'approved') {
         console.log('approved');
         res.json({ verified: true });
@@ -116,7 +115,8 @@ router.post('/make_new_password', (req, res) => {
     number: phone_number,
     password,
   };
-  userHelper.updatePassword(userData).then(() => {
+  userHelper.updatePassword(userData).then((user) => {
+    req.session.user = user;
     req.session.userLogin = true;
     res.redirect('/');
   });
@@ -196,7 +196,8 @@ router.post('/sighnup', (req, res) => {
   };
   userHelper.userSignup(userData).then((response) => {
     req.session.userLogin = true;
-    res.json({ verified: true });
+    req.session.user = userData;
+    res.redirect('/');
   });
 });
 // date formate
