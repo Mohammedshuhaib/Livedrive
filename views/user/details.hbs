@@ -1,140 +1,139 @@
-
-
 <div class="container">
   <div class="row">
     <div class="col-12 mx-auto w-25">
 
 
 
-  </div>
-  <div class="row">
-    <div class="col-md-8 pt-5 text-dark">
-      <p class="details_carName">{{vehicle.vehicles.Name}}</p>
-      <p>{{vehicle.vehicles.Transmissiontype}},{{vehicle.vehicles.Seater}} ,{{vehicle.vehicles.Fuel_type}}</p>
-      <hr>
-      <p style="font-size:8px;">NOTE:THIS IMAGE IS ONLY FOR REFERENCE PURPUSE ONLY THE COLOR MAY BE DIFFER FROM ACTUAL
-      </p>
     </div>
-    <div class="col-md-4 ">
-      <img class="details_carImg" src="/uploads/{{vehicle.vehicles.vehicleImage}}" alt="" />
-    </div>
-    <div class="d-flex justify-content-between w-100 col-12 col-md-8 align-items-center">
-      <div>
-        <p class="pick-drop text-dark">PICKUP</p>
-        <p class="pick-drop-date text-dark">DATE</p>
-        <p class="enterDate text-danger">{{pickUpDate}}</p>
-      </div>
-      <div>
-        <p>duration</p>
-        <div class="container aditionals">
-
-          <div class="circle">
-            <p class=" pt-2" style="padding-left:13px ;">{{Days}}d</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <p class="pick-drop text-dark">DROP</p>
-        <p class="pick-drop-date text-dark">DATE</p>
-        <p class="enterDate text-danger">{{dropDate}}</p>
-      </div>
-    </div>
-    <div class="col-md-4 col-12 shadow">
-      <div class="container">
-        <p>fare details</p>
+    <div class="row">
+      <div class="col-md-8 pt-5 text-dark">
+        <p class="details_carName">{{vehicle.vehicles.Name}}</p>
+        <p>{{vehicle.vehicles.Transmissiontype}},{{vehicle.vehicles.Seater}} ,{{vehicle.vehicles.Fuel_type}}</p>
         <hr>
-        <span class="d-flex">
-          <p>vehicle charge:</p>
-          <p class="ml-auto">{{vehicle.vehicles.Rent}}</p>
-        </span>
-        <span class="d-flex">
-          <p>days:</p>
-          <p class="ml-auto">{{Days}}</p>
-        </span>
-        <span class="d-flex">
-          <p>security deposite:</p>
-          <p class="ml-auto">0</p>
-        </span>
-        <hr class="mt-5">
-        <span class="d-flex">
-          <p>Total fare:</p>
-          <p class="ml-auto">{{totalFare}}/-</p>
-        </span>
-        <small>NOTE:THIS BILL IS NOT INCLUDE ANY GST</small>
+        <p style="font-size:8px;">NOTE:THIS IMAGE IS ONLY FOR REFERENCE PURPUSE ONLY THE COLOR MAY BE DIFFER FROM ACTUAL
+        </p>
       </div>
-    </div>
-    <div class="container pb-5">
-      <div class="mx-auto mt-5 shadow row">
-        <div class=" col-md-6 col-12 pt-5">
-          <div>
-            <div class="d-flex">
-              <p class="fare_details">TOTAL FARE:</p>
-              <p class="fare">{{totalFare}}/-</p>
+      <div class="col-md-4 ">
+        <img class="details_carImg" src="/uploads/{{vehicle.vehicles.vehicleImage}}" alt="" />
+      </div>
+      <div class="d-flex justify-content-between w-100 col-12 col-md-8 align-items-center">
+        <div>
+          <p class="pick-drop text-dark">PICKUP</p>
+          <p class="pick-drop-date text-dark">DATE</p>
+          <p class="enterDate text-danger">{{pickUpDate}}</p>
+        </div>
+        <div>
+          <p>duration</p>
+          <div class="container aditionals">
+
+            <div class="circle">
+              <p class=" pt-2" style="padding-left:13px ;">{{Days}}d</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-          <div class="mr-2">
-            <button
-              onclick="addToCart('{{vehicle.vehicles._id}}','{{totalFare}}','{{details.pickUpDate}}','{{details.dropDate}}','{{Days}}','{{details.pickUpLocation}}','{{details.dropLocation}}','{{vehicle.vehicles.vehicleImage}}')"
-              class="btn btn-dark p-2 button_cart">ADD TO CART</button>
+        <div>
+          <p class="pick-drop text-dark">DROP</p>
+          <p class="pick-drop-date text-dark">DATE</p>
+          <p class="enterDate text-danger">{{dropDate}}</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-12 shadow">
+        <div class="container">
+          <p>fare details</p>
+          <hr>
+          <span class="d-flex">
+            <p>vehicle charge:</p>
+            <p class="ml-auto">{{vehicle.vehicles.Rent}}</p>
+          </span>
+          <span class="d-flex">
+            <p>days:</p>
+            <p class="ml-auto">{{Days}}</p>
+          </span>
+          <span class="d-flex">
+            <p>security deposite:</p>
+            <p class="ml-auto">0</p>
+          </span>
+          <hr class="mt-5">
+          <span class="d-flex">
+            <p>Total fare:</p>
+            <p class="ml-auto">{{totalFare}}/-</p>
+          </span>
+          <small>NOTE:THIS BILL IS NOT INCLUDE ANY GST</small>
+        </div>
+      </div>
+      <div class="container pb-5">
+        <div class="mx-auto mt-5 shadow row">
+          <div class=" col-md-6 col-12 pt-5">
+            <div>
+              <div class="d-flex">
+                <p class="fare_details">TOTAL FARE:</p>
+                <p class="fare">{{totalFare}}/-</p>
+              </div>
+            </div>
           </div>
-          <div>
-            {{!-- <a id="booknow" type="button" class="btn btn-warning p-2 booknow">BOOK NOW</a> --}}
-             <a class='btn-warning btn' type='button' id="bookVehcile" href="/checkout/details">Book now</a>
+          <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+            <div class="mr-2">
+              <button
+                onclick="addToCart('{{vehicle.vehicles._id}}','{{totalFare}}','{{details.pickUpDate}}','{{details.dropDate}}','{{Days}}','{{details.pickUpLocation}}','{{details.dropLocation}}','{{vehicle.vehicles.vehicleImage}}')"
+                class="btn btn-dark p-2 button_cart">ADD TO CART</button>
+            </div>
+            <div>
+              {{!-- <a id="booknow" type="button" class="btn btn-warning p-2 booknow">BOOK NOW</a> --}}
+              <a class='btn-warning btn' type='button' id="bookVehcile" href="/checkout/details">Book now</a>
+            </div>
           </div>
         </div>
       </div>
+
+
     </div>
+    {{#if showModal}}
 
-
-  </div>
-  {{#if showModal}}
-
-   <div class="modal fade bd-example" id="loginForm" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog mx-auto" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="modal-body">
-                                    <p id="errmessage"></p>
-                                    <div class="form_container">
-                                        <form action="/login" id="userLoginForm" method="post" autocomplete="off">
-                                            <div>
-                                                <input type="text" name="userName" class="form-control"
-                                                    placeholder="Your name" value="shuhaib" />
-                                            </div>
-                                            <div>
-                                                <input type="password" name="password" class="form-control"
-                                                    placeholder="Your password" id="login_password" value="12345678" />
-                                            </div>
-                                            <div class="btn_box text-center mb-4">
-                                                <button type="submit">
-                                                    Login
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="/#" id="forgot_password" data-bs-toggle="modal"
-                                                data-bs-target="#forgot_modal" class="text-primary">forgot password</a>
-                                        </div>
-                                        <div>
-                                            <p>Dont have an account <a id="into_signup" href="/#" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">signup here</a></p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+    <div class="modal fade bd-example" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog mx-auto" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body">
+              <p id="errmessage"></p>
+              <div class="form_container">
+                <form action="/login" id="userLoginForm" method="post" autocomplete="off">
+                  <div>
+                    <input type="text" name="userName" class="form-control" placeholder="Your name" value="shuhaib" />
+                  </div>
+                  <div>
+                    <input type="password" name="password" class="form-control" placeholder="Your password"
+                      id="login_password" value="12345678" />
+                  </div>
+                  <div class="btn_box text-center mb-4">
+                    <button type="submit">
+                      Login
+                    </button>
+                  </div>
+                </form>
+                <div class="d-flex justify-content-center">
+                  <a href="/#" id="forgot_password" data-bs-toggle="modal" data-bs-target="#forgot_modal"
+                    class="text-primary">forgot password</a>
                 </div>
+                <div>
+                  <p>Dont have an account <a id="into_signup" href="/#" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">signup here</a></p>
 
-{{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      {{/if}}
+  </div>
+</div>
+

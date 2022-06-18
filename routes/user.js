@@ -471,10 +471,10 @@ router.get('/cart', async (req, res) => {
           coupons,
         });
       } else {
-        res.render('user/cart', { user: true, cartData: cartLength });
+        res.render('user/emptyCart', { user: true, cartData: cartLength });
       }
     } else {
-      res.render('user/cart', { user: true, cartData: cartLength });
+      res.render('user/emptyCart', { user: true, cartData: cartLength });
     }
   } else {
     res.send('please login');

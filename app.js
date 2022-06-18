@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('express-handlebars');
+require('dotenv').config()
 const session = require('express-session');
 const flash = require('req-flash');
 const nocache = require('nocache');
@@ -15,7 +16,7 @@ const adminRouter = require('./routes/admin');
 const app = express();
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_KEY,
   cookie: { maxAge: 6000000 },
 }));
 app.use((req, res, next) => {

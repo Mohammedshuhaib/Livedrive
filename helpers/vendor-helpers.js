@@ -57,7 +57,7 @@ module.exports = {
     const hubName = db
       .get()
       .collection(collection.VENDOR_COLLECTION)
-      .aggregate([{ $project: { 'data.hubName': 1, _id: 0 } }])
+      .aggregate([{ $match: { approved: true } }, { $project: { 'data.hubName': 1, _id: 0 } }])
       .toArray();
     resolve(hubName);
   }),
