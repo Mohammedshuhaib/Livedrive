@@ -416,13 +416,30 @@ router.get('/booking', async (req, res) => {
   if (req.session.userLogin) {
     const cartData = await userHelper.getCartCount(req.session.user);
     const bookingsData = await userHelper.getUpcomingBookings(req.session.user);
+    let noBooking;
+    if (bookingsData == '') {
+      noBooking = true;
+    }
     const compleatedBooking = await userHelper.getCompleatedBookings(
       req.session.user,
     );
+    let noCompleated;
+    if (compleatedBooking == '') {
+      noCompleated = true;
+    }
+
     const activeBooking = await userHelper.getActiveBookings(req.session.user);
+    let noActive;
+    if (activeBooking == '') {
+      noActive = true;
+    }
     const cancelledBooking = await userHelper.getCancelledBookings(
       req.session.user,
     );
+    let noCancelled;
+    if (cancelledBooking == '') {
+      noCancelled = true;
+    }
     res.render('user/bookings', {
       user: true,
       bookingsData,
@@ -430,6 +447,10 @@ router.get('/booking', async (req, res) => {
       activeBooking,
       cancelledBooking,
       cartData,
+      noActive,
+      noCancelled,
+      noCompleated,
+      noBooking,
     });
   } else {
     res.send('please login');
@@ -470,6 +491,9 @@ router.get('/cart', async (req, res) => {
           cartData: cartLength,
           coupons,
         });
+        if (cartLength === 0){
+          res.render('user/emptyCart', { user: true, cartData: cartLength });
+        }
       } else {
         res.render('user/emptyCart', { user: true, cartData: cartLength });
       }
