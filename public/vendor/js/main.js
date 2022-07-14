@@ -305,7 +305,6 @@ function changeLocation(productId, pickLocation, dropLocation, bookingId, userNa
 }
 
 function getVendorid(picture) {
-  console.log(picture);
   Swal.fire({
     title: 'Id proof!',
     text: 'Check the id proof is valid or not.',

@@ -265,7 +265,7 @@ module.exports = {
             }
           }
         }
-        resolve(bikes)
+        resolve(bikes);
       } else {
         const cars = await db
           .get()
