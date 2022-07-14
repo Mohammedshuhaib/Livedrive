@@ -47,19 +47,16 @@
                 <label for="" class="label">i need to ride a</label>
                 <div class="d-flex justify-content-start">
                   <label>
-                    <input type="radio" name="selectVehicle" value="bike">
+                    <input type="radio" name="selectVehicle" onclick="this.form.submit()" value="bike">
                     <img src="/images/motorbike.png" height="50px">
                   </label>
 
                   <label>
-                    <input type="radio" name="selectVehicle" value="car" checked>
+                    <input type="radio" name="selectVehicle" onclick="this.form.submit()" value="car" checked>
                     <img src="/images/car.png" height="50px">
                   </label>
                 </div>
               </div>
-                  <div class="pt-2 ">
-                    <input type="submit" value="Submit" class="btn btn-danger col-md-2 col-4">
-                  </div>
               </form>
             </div>
         </div>
@@ -81,7 +78,7 @@
 	    						<span class="cat">{{cars.Transmissiontype}} ,{{cars.Seater}}</span>
 	    						<p class="price ml-auto">RS {{cars.Rent}} <span>/day</span></p>
     						</div>
-    						<p class="d-flex mb-0 d-block"><a href="/details{{cars._id}}" class="btn btn-secondary py-2 ml-1 col-12">Details</a></p>
+    						<p class="d-flex mb-0 d-block"><a href="/details{{cars._id}}" class="btn btn-danger py-2 ml-1 col-12">Book now</a></p>
               <div class="mx-auto mt-2 d-block"><p id="message"></p></div>
     					</div>
     				</div>

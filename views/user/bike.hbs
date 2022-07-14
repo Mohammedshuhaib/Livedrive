@@ -44,19 +44,19 @@
                 <label for="" class="label">i need to ride a</label>
                 <div class="d-flex justify-content-start">
                   <label>
-                    <input type="radio" name="selectVehicle" value="bike"  checked>
+                    <input type="radio" name="selectVehicle" value="bike" onclick="this.form.submit()" id="radioButton" checked>
                     <img src="/images/motorbike.png" height="50px">
                   </label>
 
                   <label>
-                    <input type="radio" name="selectVehicle" value="car">
+                    <input type="radio" name="selectVehicle" onclick="this.form.submit()" id="radioButton" value="car">
                     <img src="/images/car.png" height="50px">
                   </label>
                 </div>
               </div>
-                  <div class="pt-2 ">
-                    <input type="submit" value="Submit" class="btn btn-danger col-4 col-md-2">
-                  </div>
+                  {{!-- <div class="pt-2 ">
+                    <input type="submit" value="Submit" class="btn btn-success col-4 col-md-2">
+                  </div> --}}
               </form>
             </div>
         </div>
@@ -78,7 +78,7 @@
 	    						<span class="cat">{{bikes.Transmissiontype}} ,{{bikes.Seater}}</span>
 	    						<p class="price ml-auto">RS {{bikes.Rent}}<span>/day</span></p>
     						</div>
-    						<p class="d-flex mb-0 d-block"><a id="addDate" href="/details{{bikes._id}}" class="btn btn-secondary py-2 ml-1 col-12" type="submit" >Details</a></p>
+    						<p class="d-flex mb-0 d-block"><a id="addDate" href="/details{{bikes._id}}" class="btn btn-danger py-2 ml-1 col-12" type="submit" >Book now</a></p>
 						
               <div class="mx-auto mt-2 d-block"><p id="message"></p></div>
     					</div>
@@ -109,3 +109,4 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+

@@ -3251,7 +3251,7 @@ footer.site-footer .footer-inner a {
   border-radius: 0;
 }
 .signup-form {
-  width: 390px;
+  /* width: 390px; */
   margin: 0 auto;
   padding: 30px 0;
 }

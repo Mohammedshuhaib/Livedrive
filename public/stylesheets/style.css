@@ -14936,7 +14936,7 @@ select {
 
 @media(max-width:576px) {
   .details_carImg {
-    height: 200px;
+    height: 180px;
   }
 
   .details_carName {
