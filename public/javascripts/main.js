@@ -894,27 +894,28 @@ function addToCart(
   });
 }
 
-// function bookVehicle(data) {
-//   let value;
-//   if (data === 1) {
-//     value = 'details';
-//   } else {
-//     value = 'cart';
-//   }
-//   $.ajax({
-//     type: 'GET',
-//     data: {value},
-//     url: '/checkout',
-//     success(response) {
-//       if (response.loginError) {
-//         $('#loginForm').modal('show');
-//         $('#errmessage').text('Please login');
-//       }
-//       if( response.data) {
-//       }
-//     },
-//   });
-// }
+function bookVehicle(data) {
+  let value;
+  if (data === 1) {
+    value = 'details';
+  } else {
+    value = 'cart';
+  }
+  $.ajax({
+    type: 'GET',
+    data: {value},
+    url: '/checkout',
+    success(response) {
+      if (response.loginError) {
+        $('#loginForm').modal('show');
+        $('#errmessage').text('Please login');
+      }
+      if( response.ok) {
+        window.location = '/checkoutPage'
+      }
+    },
+  });
+}
 
 function removeCart(id) {
   $.ajax({

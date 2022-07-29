@@ -214,9 +214,8 @@ function dateFormat(date) {
 router.post('/vehicles', async (req, res) => {
   let vehicleLength;
   const Hub = await vendorHelpers.getHubName();
-  const {
-    pickUpLocation, dropLocation, pickUpDate, dropDate, selectVehicle,
-  } = req.body;
+  const { pickUpLocation, dropLocation, pickUpDate, dropDate, selectVehicle } =
+    req.body;
   let cartData;
   if (req.session.user) {
     cartData = await userHelper.getCartCount(req.session.user);
@@ -232,7 +231,7 @@ router.post('/vehicles', async (req, res) => {
       selectVehicle,
       pickUpLocation,
       pickUpDate,
-      dropDate,
+      dropDate
     );
     vehicleLength = cars.length;
     res.render('user/car', {
@@ -249,7 +248,7 @@ router.post('/vehicles', async (req, res) => {
       selectVehicle,
       pickUpLocation,
       pickUpDate,
-      dropDate,
+      dropDate
     );
     vehicleLength = bikes.length;
     res.render('user/bike', {
@@ -352,18 +351,18 @@ router.post(
       await userHelper.updateUser(
         req.session.user.user,
         'idproof',
-        req.files.idproof[0].filename,
+        req.files.idproof[0].filename
       );
       res.redirect('/profile');
     } else {
       await userHelper.updateUser(
         req.session.user.user,
         'profilePic',
-        req.files.profilePic[0].filename,
+        req.files.profilePic[0].filename
       );
       res.redirect('/profile');
     }
-  },
+  }
 );
 
 // verify otp for edit number
@@ -421,7 +420,7 @@ router.get('/booking', async (req, res) => {
       noBooking = true;
     }
     const compleatedBooking = await userHelper.getCompleatedBookings(
-      req.session.user,
+      req.session.user
     );
     let noCompleated;
     if (compleatedBooking == '') {
@@ -434,7 +433,7 @@ router.get('/booking', async (req, res) => {
       noActive = true;
     }
     const cancelledBooking = await userHelper.getCancelledBookings(
-      req.session.user,
+      req.session.user
     );
     let noCancelled;
     if (cancelledBooking == '') {
@@ -491,7 +490,7 @@ router.get('/cart', async (req, res) => {
           cartData: cartLength,
           coupons,
         });
-        if (cartLength === 0){
+        if (cartLength === 0) {
           res.render('user/emptyCart', { user: true, cartData: cartLength });
         }
       } else {
@@ -529,7 +528,7 @@ router.get('/add-to-cart', async (req, res) => {
         days,
         pickuplocation,
         droplocation,
-        vehicleImage,
+        vehicleImage
       );
       res.json({
         added: true,
@@ -586,9 +585,6 @@ router.get('/details:id', async (req, res) => {
   const dropDate = dateFormat(req.session.bookingDetails.dropDate);
   let showModal;
   const totalFare = fare * req.session.days;
-  if (req.session.showLoginModal) {
-    showModal = true;
-  }
 
   req.session.totalFare = totalFare;
   res.render('user/details', {
@@ -596,7 +592,7 @@ router.get('/details:id', async (req, res) => {
     vehicle,
     details: req.session.bookingDetails,
     cartData,
-    showModal,
+    showModal: req.session.showLoginModal,
     // Date: req.session.updatedDate,
     Days: req.session.days,
     totalFare,
@@ -605,10 +601,10 @@ router.get('/details:id', async (req, res) => {
   });
 });
 
-router.get('/checkout/:purpose', async (req, res) => {
+router.get('/checkout', async (req, res) => {
   if (req.session.user) {
     const cartData = await userHelper.getCartCount(req.session.user);
-    const { purpose } = req.params;
+    const purpose = req.query.value;
     let cartDatas;
     let cart;
     let vehicle;
@@ -648,8 +644,7 @@ router.get('/checkout/:purpose', async (req, res) => {
     req.session.totalCheckoutFare = totalFare;
     const userData = await userHelper.findSigleUser(req.session.user.user);
     const coupons = await couponsHelpers.getCoupons();
-    res.render('user/checkout', {
-      user: true,
+    req.session.Checkoutdata = {
       cart,
       userData,
       vehicle,
@@ -659,11 +654,37 @@ router.get('/checkout/:purpose', async (req, res) => {
       Discount,
       couponCode,
       cartData,
-    });
+    };
+    res.json({ ok: true });
   } else {
-    req.session.showLoginModal = true;
-    res.redirect(`/details${req.session.vehicleId}`);
+    res.json({ loginError: true });
   }
+});
+
+router.get('/checkoutPage', (req, res) => {
+  const {
+    cart,
+    userData,
+    vehicle,
+    totalFare,
+    days,
+    coupons,
+    Discount,
+    couponCode,
+    cartData,
+  } = req.session.Checkoutdata;
+  res.render('user/checkout', {
+    user: true,
+    cart,
+    userData,
+    vehicle,
+    totalFare,
+    days,
+    coupons,
+    Discount,
+    couponCode,
+    cartData,
+  });
 });
 
 router.post('/applyCoupon', async (req, res) => {
@@ -675,7 +696,7 @@ router.post('/applyCoupon', async (req, res) => {
     try {
       const alreadyTaken = await couponsHelpers.checkIdExist(
         user._id,
-        req.body.couponId,
+        req.body.couponId
       );
       const { discount } = req.body;
       req.session.couponId = req.body.couponId;
@@ -710,7 +731,7 @@ router.post('/booknow', storage.single('userIdProof'), async (req, res) => {
         req.body.email,
         Dates.pickUpDate,
         req.session.user.user,
-        Dates.pickUpLocation,
+        Dates.pickUpLocation
       );
     } catch (err) {
       console.log(err);
@@ -720,7 +741,7 @@ router.post('/booknow', storage.single('userIdProof'), async (req, res) => {
       .then(async (response) => {
         const data = await userHelper.generateRazorpay(
           totalFare * 100,
-          response,
+          response
         );
         res.json({ status: true, data });
       });
@@ -731,7 +752,7 @@ router.post('/booknow', storage.single('userIdProof'), async (req, res) => {
     const bookingId = await userHelper.addToBookingsCart(
       totalFare,
       userData,
-      cart,
+      cart
     );
     const data = await userHelper.generateRazorpay(totalFare * 100, bookingId);
     const { purpose } = req.body;
@@ -747,13 +768,13 @@ router.post('/verify-payment', async (req, res) => {
     await userHelper.changePaymentStatus(
       req.session.user,
       req.body['order[receipt]'],
-      req.body.purpose,
+      req.body.purpose
     );
 
     if (req.session.couponUsed) {
       await couponsHelpers.updateUser(
         req.session.user._id,
-        req.session.couponId,
+        req.session.couponId
       );
     }
 
