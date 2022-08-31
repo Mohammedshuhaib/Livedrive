@@ -18,7 +18,7 @@ NOTE: Please read the RUN section before opening an issue.
 
 ## Demo
 
-![screenshot](shoppi.png)
+![screenshot](main.png)
 
 The application is deployed to AWS and can be accessed through the following link:
 
